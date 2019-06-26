@@ -40,7 +40,17 @@ export default new Router({
       meta: {
         requireAuth: true
       },
-      component: () => import('./views/home.vue')
+      component: () => import('./views/home.vue'),
+      children: [
+        {
+          path: '/imgshow',
+          name: 'imgshow',
+          meta: {
+            requireAuth: true
+          },
+          component: () => import('./views/pages/imgshow.vue')
+        }
+      ]
     }
   ]
 })

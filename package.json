@@ -14,6 +14,7 @@
     "qs": "^6.7.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue-simple-uploader": "^0.7.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -38,7 +39,10 @@
       "@vue/standard"
     ],
     "rules": {
-      "indent": [1, 4]
+      "indent": [
+        1,
+        4
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"

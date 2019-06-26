@@ -46,7 +46,7 @@
           </el-submenu>
         </el-menu>
       </div>
-      <div slot="main">
+      <div slot="main" style="padding: 20px">
         <router-view></router-view>
       </div>
     </main-layout>
