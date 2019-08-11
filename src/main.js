@@ -7,6 +7,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import uploader from 'vue-simple-uploader'
 import VueVideoPlayer from 'vue-video-player'
+import WHUI from './components/WHUI'
+import './assets/iconfont/iconfont.css'
 
 // require videojs style
 import 'video.js/dist/video-js.css'
@@ -18,7 +20,7 @@ Vue.use(VueVideoPlayer /* {
 } */)
 
 Vue.config.productionTip = false
-Vue.use(ElementUI).use(uploader)
+Vue.use(ElementUI).use(uploader).use(WHUI)
 
 window.vm = new Vue({
     router,

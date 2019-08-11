@@ -1,7 +1,7 @@
 <template>
   <div
     class="card-default-layout"
-    :style="`min-width:${width}px;min-height:${height}px`"
+    :style="`width:${width}px;height:${height}px`"
   >
     <slot name="content">
     </slot>
@@ -12,8 +12,8 @@
 export default {
     name: 'CardLayout',
     props: {
-        width: { type: Number, default: 250 },
-        height: { type: Number, default: 300 }
+        width: { type: Number, default: 300 },
+        height: { type: Number, default: 350 }
     },
     data () {
         return {}
