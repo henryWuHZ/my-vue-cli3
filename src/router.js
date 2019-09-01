@@ -35,6 +35,11 @@ export default new Router({
             component: () => import('./views/entrances')
         },
         {
+            path: '/welcome',
+            name: 'welcome',
+            component: () => import('./views/welcome')
+        },
+        {
             path: '/main',
             name: 'mainPage',
             meta: {

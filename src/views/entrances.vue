@@ -13,10 +13,6 @@
       </el-header>
       <el-main style="margin-top:60px;">
         <div class="left-part">
-          <!-- <el-radio-group v-model="isCollapse">
-            <el-radio-button :label="false">展开</el-radio-button>
-            <el-radio-button :label="true">收起</el-radio-button>
-          </el-radio-group> -->
           <div style="margin-bottom:20px;">
             <el-input
               v-model="searchKey"
@@ -31,14 +27,11 @@
             </el-input>
           </div>
           <my-category-menu height="150px"></my-category-menu>
-          <div>
-            <span
-              v-for="(item, index) in showArr"
-              :key="index"
-            >{{item}}</span>
-          </div>
         </div>
-        <div class="right-part">
+        <div
+          class="right-part"
+          ref="right-part"
+        >
           <el-carousel
             :interval="2000"
             type="card"
@@ -51,7 +44,7 @@
               <h3 class="medium">{{ item }}</h3>
             </el-carousel-item>
           </el-carousel>
-          <div style="position:relative;margin: 0 10px;">
+          <div style="position:relative;">
             <el-tabs
               v-model="activeName"
               @tab-click="handleClick"
@@ -68,22 +61,10 @@
             <span style="    position: absolute;right: 0;top: 8px;">查看全部<i class="el-icon-arrow-right"></i></span>
           </div>
           <div class="card-list">
-            <!-- <card-layout>
-              <div
-                slot="content"
-                @click="$router.push('/main')"
-              >
-                test-card
-                <el-tooltip
-                  content="sadasdasd"
-                  effect="dark"
-                  placement="top"
-                >
-                  <span>asdasdsa</span>
-                </el-tooltip>
-              </div>
-            </card-layout> -->
-            <card-layout class="car-card">
+            <card-layout
+              class="car-card"
+              :width="cardWidth"
+            >
               <div
                 slot="content"
                 style="padding: 10px;"
@@ -120,69 +101,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="footer">
+                <div
+                  class="footer"
+                  style="text-align:right"
+                  @click="toShowDetail"
+                >
                   <i class="iconfont iconyuanfuceng_qianwanggoumai"></i>
                 </div>
-              </div>
-            </card-layout>
-            <card-layout class="car-card">
-              <div
-                slot="content"
-                style="padding: 10px;"
-              >
-                <div
-                  class="hover-zoom"
-                  style="width:100%;height: 150px;border-radius:4px;"
-                  :style="`background-image: url(${test2})`"
-                ></div>
-              </div>
-            </card-layout>
-            <card-layout class="car-card">
-              <div
-                slot="content"
-                style="padding: 10px;"
-              >
-                <div
-                  class="hover-zoom"
-                  style="width:100%;height: 150px;border-radius:4px;"
-                  :style="`background-image: url(${test2})`"
-                ></div>
-              </div>
-            </card-layout>
-            <card-layout class="car-card">
-              <div
-                slot="content"
-                style="padding: 10px;"
-              >
-                <div
-                  class="hover-zoom"
-                  style="width:100%;height: 150px;border-radius:4px;"
-                  :style="`background-image: url(${test2})`"
-                ></div>
-              </div>
-            </card-layout>
-            <card-layout class="car-card">
-              <div
-                slot="content"
-                style="padding: 10px;"
-              >
-                <div
-                  class="hover-zoom"
-                  style="width:100%;height: 150px;border-radius:4px;"
-                  :style="`background-image: url(${test2})`"
-                ></div>
-              </div>
-            </card-layout>
-            <card-layout class="car-card">
-              <div
-                slot="content"
-                style="padding: 10px;"
-              >
-                <div
-                  class="hover-zoom"
-                  style="width:100%;height: 150px;border-radius:4px;"
-                  :style="`background-image: url(${test2})`"
-                ></div>
               </div>
             </card-layout>
           </div>
@@ -226,7 +151,6 @@ export default {
         return {
             value: 3.7,
             showDrawer: false,
-            isCollapse: false,
             activeIndex: '',
             activeName: 'latest',
             searchKey: '',
@@ -234,25 +158,33 @@ export default {
             test1: test1,
             test2: test2,
             isScroll: false,
-            infoArr: []
+            cardWidth: 0,
+            cardHeight: 0
         }
     },
     components: { CardLayout },
     computed: {
-        showArr () {
-            return this.infoArr.slice(0, 2)
+    },
+    watch: {
+        cardWidth: function () {
+            console.log(this.cardWidth, 123)
         }
     },
     created () {
-        // this.infoArr = [1, 2, 3, 4, 5, 6]
-        // setInterval(() => {
-        //     this.infoArr = this.setLunBo(this.infoArr, 2)
-        // }, 2000)
     },
     mounted () {
+        let that = this
+        that.cardWidth = (this.$refs['right-part'].clientWidth - 60) / 3
         window.addEventListener('scroll', this.handleScroll, true)
+        window.onresize = function () {
+            that.cardWidth = (that.$refs['right-part'].clientWidth - 60) / 3
+        }
     },
     methods: {
+        toShowDetail () {
+            console.log(213)
+            this.showDrawer = true
+        },
         handleScroll () {
             this.isScroll = document.documentElement.scrollTop > 0
         },
@@ -279,7 +211,8 @@ export default {
     flex-wrap: wrap;
     .car-card {
       float: left;
-      margin: 10px;
+      margin-bottom: 20px;
+      min-width: 220px;
     }
   }
   .el-carousel__button {

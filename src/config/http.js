@@ -1,10 +1,11 @@
 import axios from 'axios'
 import Qs from 'qs'
+import { baseUrl } from './env'
 
-let baseUrl = process.env.NODE_ENV !== 'production' ? '/' : '/'
+// let baseUrl = process.env.NODE_ENV !== 'production' ? '/' : '/'
 const instance = axios.create({
     baseURL: baseUrl,
-    timeout: 20000,
+    timeout: 30000,
     headers: {
         Accept: 'application/json'
     }
@@ -42,7 +43,7 @@ instance.interceptors.response.use(
 )
 
 // 处理数据
-function handleData (data) {}
+function handleData (data) { }
 
 // 二次封装方法
 const getFn = (url, data, config = {}) => {

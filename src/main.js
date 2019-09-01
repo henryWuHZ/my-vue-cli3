@@ -9,6 +9,7 @@ import uploader from 'vue-simple-uploader'
 import VueVideoPlayer from 'vue-video-player'
 import WHUI from './components/WHUI'
 import './assets/iconfont/iconfont.css'
+import md5 from 'js-md5'
 
 // require videojs style
 import 'video.js/dist/video-js.css'
@@ -20,6 +21,7 @@ Vue.use(VueVideoPlayer /* {
 } */)
 
 Vue.config.productionTip = false
+Vue.prototype.$md5 = md5
 Vue.use(ElementUI).use(uploader).use(WHUI)
 
 window.vm = new Vue({
