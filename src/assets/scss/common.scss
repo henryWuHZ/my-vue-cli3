@@ -5,6 +5,9 @@ body{
   height: 4px;
   border-radius: 2px; 
 }
+p{
+  margin: 0;
+}
 .hover-zoom {
   float: left;
   margin: 0;
@@ -39,4 +42,33 @@ body{
   padding: 5px 14px!important;
   border-radius: 2px!important;
   box-sizing: border-box;
-}             
+}     
+.text-btn {
+  font-size: 12px;
+  color: #1c92ff;
+  cursor: pointer;
+  &:hover {
+    color: #66b1ff;
+  }
+  & + .text-btn {
+    margin-left: 10px;
+  }
+  &.success {
+    color: #67c23a;
+    &:hover {
+      color: #85ce61;
+    }
+  }
+  &.warning {
+    color: #e6a23c;
+    &:hover {
+      color: #f0c78a;
+    }
+  }
+  &.danger {
+    color: #f56c6c;
+    &:hover {
+      color: #f78989;
+    }
+  }
+}        

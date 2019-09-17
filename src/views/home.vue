@@ -3,7 +3,7 @@
     <main-layout :opened="opened">
       <div slot="header">
         <div class="user-info">
-          <div
+          <!-- <div
             class="change-role-btn"
             @click="handleChangePlatform"
           >
@@ -12,7 +12,7 @@
               <i class="el-icon el-icon-back"></i>
             </div>
           </div>
-          <head-msg></head-msg>
+          <head-msg></head-msg> -->
           <div
             class="el-dropdown-link"
             style="display: inline-flex;align-items: center"
@@ -53,7 +53,10 @@
           router
           :collapse="!opened"
           unique-opened
-          style="margin-top: 60px"
+          style="margin-top: 60px;border-right:0;"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b"
         >
           <el-menu-item :index="'/welcome'"><i class="el-icon-s-home"></i><span slot="title">首页</span></el-menu-item>
           <el-submenu index="/components">
@@ -63,6 +66,14 @@
             </template>
             <el-menu-item index="/imgshow">图片预览</el-menu-item>
             <el-menu-item index="/chunkUploader">分片上传组件</el-menu-item>
+          </el-submenu>
+          <el-submenu index="/management">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span slot="title">综合管理</span>
+            </template>
+            <el-menu-item index="/brandList">品牌列表</el-menu-item>
+            <el-menu-item index="/modelList">型号列表</el-menu-item>
           </el-submenu>
         </el-menu>
       </div>

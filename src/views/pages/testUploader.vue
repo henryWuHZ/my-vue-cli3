@@ -30,7 +30,7 @@ export default {
             console.log(res)
         },
         async getList () {
-            const res = await getBrands({ pageNum: 1, pageSize: 10 })
+            const res = await getBrands({ pageNum: 1, pageSize: 10, search: '马自达' })
             console.log(res)
         }
     }

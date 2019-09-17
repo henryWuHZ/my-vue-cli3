@@ -1,7 +1,8 @@
 <template>
   <div class="img-show-page">
     <img-preview :imgLists="[testImg, testImg, testImg]"></img-preview>
-    <el-tree
+    <my-video :videoSrc="videoSrc"></my-video>
+    <!-- <el-tree
       :data="data2"
       show-checkbox
       default-expand-all
@@ -10,31 +11,14 @@
       :default-checked-keys="[10]"
       :props="defaultProps"
     >
-    </el-tree>
-    <div>
-      <el-form
-        ref="form"
-        :model="form"
-      >
-        <el-form-item label="aaaa">
-          <el-input v-model="form.aaa"></el-input>
-        </el-form-item>
-        <ports-form-item
-          :form="form"
-          :portKey="'ports'"
-        ></ports-form-item>
-      </el-form>
-      <el-button
-        type="primary"
-        @click="showForm"
-      >生成</el-button>
-    </div>
+    </el-tree> -->
   </div>
 </template>
 
 <script>
 import ImgPreview from '@/components/ImgPreview'
-import PortsFormItem from '@/components/PortsFormSet'
+// import PortsFormItem from '@/components/PortsFormSet'
+import MyVideo from './components/H5video'
 
 let testImg = require('@/static/login_bg.jpg')
 
@@ -42,6 +26,7 @@ export default {
     name: 'imgshow',
     data () {
         return {
+            videoSrc: 'http://localhost:9000/static/info.mp4',
             defaultProps: {
                 children: 'children',
                 label: 'label'
@@ -93,7 +78,7 @@ export default {
             }
         }
     },
-    components: { ImgPreview, PortsFormItem },
+    components: { ImgPreview, MyVideo },
     created () {
     },
     beforeDestroy () {

@@ -10,6 +10,7 @@ import VueVideoPlayer from 'vue-video-player'
 import WHUI from './components/WHUI'
 import './assets/iconfont/iconfont.css'
 import md5 from 'js-md5'
+import tableFormat from '@/utils/tableFormat.js'
 
 // require videojs style
 import 'video.js/dist/video-js.css'
@@ -22,7 +23,7 @@ Vue.use(VueVideoPlayer /* {
 
 Vue.config.productionTip = false
 Vue.prototype.$md5 = md5
-Vue.use(ElementUI).use(uploader).use(WHUI)
+Vue.use(ElementUI).use(uploader).use(WHUI).use(tableFormat)
 
 window.vm = new Vue({
     router,

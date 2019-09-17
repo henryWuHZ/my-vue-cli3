@@ -62,6 +62,22 @@ export default new Router({
                         requireAuth: true
                     },
                     component: () => import('./views/pages/testUploader.vue')
+                },
+                {
+                    path: '/brandList',
+                    name: 'brandList',
+                    meta: {
+                        requireAuth: true
+                    },
+                    component: () => import('./views/pages/manage/brandList.vue')
+                },
+                {
+                    path: '/modelList',
+                    name: 'modelList',
+                    meta: {
+                        requireAuth: true
+                    },
+                    component: () => import('./views/pages/manage/modelList.vue')
                 }
             ]
         }

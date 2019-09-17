@@ -2,7 +2,7 @@
   <div class="brand-list-page">
     <default-layout>
       <template #header>
-        <p>品牌管理</p>
+        <p>型号列表</p>
       </template>
       <template #main>
         <common-table
@@ -35,13 +35,36 @@
         inline
       >
         <el-form-item
+          label="品牌"
+          prop="brand_id"
+          :rules="[{required: true, message: '请选择', trigger: 'change'}]"
+        >
+          <el-select
+            style="width:200px"
+            v-model="addForm.brand_id"
+            placeholder="请选择"
+            size="small"
+            clearable
+            filterable
+          >
+            <el-option
+              v-for="item in opts"
+              :key="item.brand_id"
+              :label="item.brand_name"
+              :value="item.brand_id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
           label="名称"
           prop="name"
           :rules="[{required: true, message: '名称不能为空', trigger: 'blur'}]"
         >
           <el-input
+            style="width:200px"
             placeholder="请输入名称"
             v-model="addForm.name"
+            size="small"
             :maxlength="20"
           ></el-input>
         </el-form-item>
@@ -67,14 +90,16 @@
 import DefaultLayout from '@/components/layout/CommonTableList'
 import CommonTable from '@/components/CommonTable'
 import TableMixins from '@/components/tableMixins'
-import { addBrand, getBrands, updateBrand, deleteBrand } from '@/api/brand'
+import { addModel, getModels, updateModel, deleteModel, getBrands } from '@/api/model'
 
 export default {
     data () {
         return {
+            opts: [],
             activeRow: '',
             dialogTitle: '',
             addForm: {
+                brand_id: '',
                 name: ''
             },
             dialogVisible: false,
@@ -107,31 +132,46 @@ export default {
     },
     mounted () {
         this.getList()
+        this.getOptList()
     },
     methods: {
+        async getOptList () {
+            const res = await getBrands({ ...this.searchCondition })
+            console.log(res)
+            if (res.code === '00000') {
+                this.opts = res.data
+            }
+        },
         toDel (row) {
             this.activeRow = row
-            this.dialogTitle = '删除品牌'
+            this.dialogTitle = '删除型号'
             this.type = 'delete'
             this.dialogVisible = true
         },
         toEdit (row) {
             this.activeRow = row
-            this.dialogTitle = '编辑品牌'
-            this.addForm.name = row.brand_name
+            this.dialogTitle = '编辑型号'
+            this.addForm.name = row.model_name
+            this.addForm.brand_id = row.brand_id
             this.type = 'edit'
             this.dialogVisible = true
         },
         showAdd () {
             this.type = 'add'
-            this.dialogTitle = '添加品牌'
+            this.dialogTitle = '添加型号'
             this.dialogVisible = true
         },
         setHead () {
             this.tables.thead = [
                 {
+                    prop: 'model_name',
+                    label: '型号',
+                    sortable: 'custom'
+                },
+                {
                     prop: 'brand_name',
-                    label: '品牌名称'
+                    label: '品牌名称',
+                    sortable: 'custom'
                 }, {
                     prop: 'operation',
                     label: '操作',
@@ -144,23 +184,25 @@ export default {
             this.$refs.addForm.resetFields()
         },
         async toAdd () {
-            const res = await addBrand({ name: this.addForm.name })
+            const res = await addModel({ name: this.addForm.name, brand_id: this.addForm.brand_id })
             console.log(res)
             if (res.code === '00000') {
                 this.getList()
                 this.dialogVisible = false
+                this.$refs.addForm.resetFields()
             }
         },
         async toUpdate () {
-            const res = await updateBrand({ name: this.addForm.name, id: this.activeRow.brand_id })
+            const res = await updateModel({ name: this.addForm.name, brand_id: this.activeRow.brand_id, id: this.activeRow.model_id })
             console.log(res)
             if (res.code === '00000') {
                 this.getList()
                 this.dialogVisible = false
+                this.$refs.addForm.resetFields()
             }
         },
         async toDelete () {
-            const res = await deleteBrand({ id: this.activeRow.brand_id })
+            const res = await deleteModel({ id: this.activeRow.model_id })
             console.log(res)
             if (res.code === '00000') {
                 this.getList()
@@ -169,7 +211,7 @@ export default {
         },
         async getList (val) {
             this.searchCondition = { page: this.tables.pageInfo.page, pageSize: this.tables.pageInfo.size, ...this.searchCondition, ...val }
-            const res = await getBrands({ ...this.searchCondition })
+            const res = await getModels({ ...this.searchCondition })
             console.log(res)
             if (res.code === '00000') {
                 let formatData = this.setOperation(res)
