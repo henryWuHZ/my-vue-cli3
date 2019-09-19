@@ -78,6 +78,22 @@ export default new Router({
                         requireAuth: true
                     },
                     component: () => import('./views/pages/manage/modelList.vue')
+                },
+                {
+                    path: '/productionList',
+                    name: 'productionList',
+                    meta: {
+                        requireAuth: true
+                    },
+                    component: () => import('./views/pages/manage/productionList.vue')
+                },
+                {
+                    path: '/addProduction',
+                    name: 'addProduction',
+                    meta: {
+                        requireAuth: true
+                    },
+                    component: () => import('./views/pages/manage/addProduction.vue')
                 }
             ]
         }

@@ -141,6 +141,7 @@
 
 <script>
 import CardLayout from '@/components/CardLayout'
+import { getSelectList } from '@/api/production'
 let defaultLogo = require('../static/logo.jpg')
 let test1 = require('../static/info1.jpg')
 let test2 = require('../static/info2.jpg')
@@ -149,6 +150,7 @@ export default {
     name: 'entrances',
     data () {
         return {
+            options: [],
             value: 3.7,
             showDrawer: false,
             activeIndex: '',
@@ -181,6 +183,13 @@ export default {
         }
     },
     methods: {
+        async getOpts () {
+            const res = await getSelectList()
+            console.log('select', res)
+            if (res.code === '00000') {
+                this.options = res.data
+            }
+        },
         toShowDetail () {
             console.log(213)
             this.showDrawer = true

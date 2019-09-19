@@ -1,7 +1,7 @@
 <template>
   <div class="img-show-page">
-    <img-preview :imgLists="[testImg, testImg, testImg]"></img-preview>
-    <my-video :videoSrc="videoSrc"></my-video>
+    <img-preview :imgLists="[testImg]"></img-preview>
+    <my-video :videoSrc="'http://localhost:9000/static/info.mp4'"></my-video>
     <!-- <el-tree
       :data="data2"
       show-checkbox

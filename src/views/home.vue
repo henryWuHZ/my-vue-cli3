@@ -74,6 +74,7 @@
             </template>
             <el-menu-item index="/brandList">品牌列表</el-menu-item>
             <el-menu-item index="/modelList">型号列表</el-menu-item>
+            <el-menu-item index="/productionList">产品列表</el-menu-item>
           </el-submenu>
         </el-menu>
       </div>
@@ -89,7 +90,7 @@
 
 <script>
 import MainLayout from '@/components/MainLayout'
-import HeadMsg from '@/components/HeadMsg'
+// import HeadMsg from '@/components/HeadMsg'
 let defaultUserLogo = require('../static/img/default_user_logo.jpg')
 
 export default {
@@ -102,7 +103,7 @@ export default {
             opened: true
         }
     },
-    components: { MainLayout, HeadMsg },
+    components: { MainLayout },
     created () {
     },
     methods: {
