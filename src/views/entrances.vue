@@ -1,19 +1,19 @@
 <template>
   <div class="entrances-page">
     <el-container>
-      <el-header style="position:fixed;width:100%;z-index:999;">
+      <el-header>
         <div style="float:left;display:flex;align-items: center;">
           <img
+            class="company-logo"
             :src="defaultLogo"
-            style="width:40px;height:40px;border-radius:2px;float:left;margin-right:10px;cursor:pointer;"
             @click="$router.push('/welcome')"
           />
-          <span style="float: left;">克拉汽车改装</span>
+          <span style="float: left;">克拉汽车改装2</span>
         </div>
       </el-header>
-      <el-main style="margin-top:60px;">
+      <el-main>
         <div class="left-part">
-          <div style="margin-bottom:20px;">
+          <div class="search-input">
             <el-input
               v-model="searchKey"
               placeholder="搜索关键字"
@@ -26,7 +26,7 @@
               ></el-button>
             </el-input>
           </div>
-          <my-category-menu height="150px"></my-category-menu>
+          <my-category-menu class="category-menu"></my-category-menu>
         </div>
         <div
           class="right-part"
@@ -35,7 +35,6 @@
           <el-carousel
             :interval="2000"
             type="card"
-            height="300px"
           >
             <el-carousel-item
               v-for="item in 6"
@@ -58,7 +57,7 @@
                 name="hot"
               ></el-tab-pane>
             </el-tabs>
-            <span style="    position: absolute;right: 0;top: 8px;">查看全部<i class="el-icon-arrow-right"></i></span>
+            <span class="show-all-production">查看全部<i class="el-icon-arrow-right"></i></span>
           </div>
           <div class="card-list">
             <card-layout
@@ -67,11 +66,10 @@
             >
               <div
                 slot="content"
-                style="padding: 10px;"
+                class="card-content"
               >
                 <div
-                  class="hover-zoom"
-                  style="width:100%;height: 150px;border-radius:4px;"
+                  class="hover-zoom logo-img"
                   :style="`background-image: url(${test1})`"
                 ></div>
                 <div class="card-content-info">
@@ -229,6 +227,10 @@ export default {
     border-radius: 2px;
   }
   .el-header {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    height: 60px !important;
     line-height: 60px;
     background-image: linear-gradient(
       -90deg,
@@ -238,15 +240,39 @@ export default {
     );
     color: #ffffff;
     font-size: 16px;
+    .company-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 2px;
+      float: left;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+  .el-main {
+    margin-top: 60px;
   }
   .left-part {
     width: 30%;
     float: left;
+    .search-input {
+      margin-bottom: 20px;
+    }
+    .category-menu {
+      position: absolute;
+      z-index: 99;
+      .right-menu {
+        max-width: 500px;
+      }
+    }
   }
   .right-part {
     float: left;
     width: calc(70% - 24px);
     margin-left: 24px;
+    .el-carousel__container {
+      height: 300px;
+    }
     .el-carousel__item h3 {
       color: #475669;
       font-size: 14px;
@@ -261,6 +287,12 @@ export default {
 
     .el-carousel__item:nth-child(2n + 1) {
       background-color: #d3dce6;
+    }
+    .show-all-production {
+      position: absolute;
+      right: 0;
+      top: 8px;
+      font-size: 14px;
     }
   }
   .scroll-top {
@@ -286,6 +318,14 @@ export default {
 /* .slide-fade-leave-active for below version 2.1.8 */ {
     transform: translateY(10px);
     opacity: 0;
+  }
+  .card-content {
+    padding: 10px;
+    .logo-img {
+      width: 100%;
+      height: 150px;
+      border-radius: 4px;
+    }
   }
   .card-content-info {
     margin-top: 170px;

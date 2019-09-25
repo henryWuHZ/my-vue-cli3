@@ -40,7 +40,7 @@
           </el-form-item>
           <el-form-item>
             <el-button
-              style="width: 150px;float:right"
+              class="to-sign-in"
               @click="toSignIn"
             >
               登录&nbsp;<i class="el-icon-s-promotion"></i>
@@ -107,7 +107,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 688px;
+    // min-height: 688px;
     height: calc(100% - 42px);
     box-sizing: border-box;
     .title {
@@ -147,6 +147,10 @@ export default {
       background-attachment: fixed;
       -webkit-filter: blur(5px);
       filter: blur(5px);
+    }
+    .to-sign-in {
+      width: 150px;
+      float: right;
     }
     .el-form {
       padding: 20px;

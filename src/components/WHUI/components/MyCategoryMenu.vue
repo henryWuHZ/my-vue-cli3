@@ -4,10 +4,7 @@
     @mouseenter="father"
     @mouseleave="showMenu = false"
   >
-    <div
-      class="left-menu"
-      :style="`width:${width};height:${height}`"
-    >
+    <div class="left-menu">
       <ul :style="`border-right: ${showMenu ? 1 : 0}px solid #fff;`">
         <li
           v-for="(firstItem, firstIndex) in menuList"
@@ -38,7 +35,7 @@
             :key="secondIndex"
           >
             <div style="word-break:keep-all;">{{secondItem.name}}：</div>
-            <div>
+            <div style="word-break:break-all;">
               <span
                 v-for="(thirdItem, thirdIndex) in secondItem.children"
                 :key="thirdIndex"
@@ -224,6 +221,9 @@ export default {
   .left-menu {
     padding: 10px;
     box-sizing: border-box;
+    min-height: 150px;
+    width: 150px;
+    font-size: 14px;
     .left-category-item {
       cursor: pointer;
       &:hover {
@@ -236,6 +236,7 @@ export default {
     padding: 0;
     margin: 0;
     height: 100%;
+    font-size: 14px;
     li {
       list-style-type: none;
     }
@@ -244,6 +245,7 @@ export default {
     flex: 1;
     padding: 10px;
     box-sizing: border-box;
+    font-size: 14px;
     .right-menu-item {
       display: flex;
       font-size: 12px;

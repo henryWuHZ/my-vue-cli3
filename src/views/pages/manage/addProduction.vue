@@ -3,6 +3,7 @@
     <default-layout>
       <template #header>
         <p>添加产品</p>
+        <div></div>
       </template>
       <template #main>
         <el-form

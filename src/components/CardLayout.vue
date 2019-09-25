@@ -13,7 +13,7 @@ export default {
     name: 'CardLayout',
     props: {
         width: { type: Number, default: 300 },
-        height: { type: Number, default: 350 }
+        height: { type: Number }
     },
     data () {
         return {}

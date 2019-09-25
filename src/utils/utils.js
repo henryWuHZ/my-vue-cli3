@@ -33,3 +33,20 @@ export const decrypt = (text) => {
     })
     return decrypted.toString()
 }
+
+export const throttle = function (func, wait, mustRun) {
+    let timer
+    let startTime = new Date()
+    return function () {
+        let context = this
+        let args = arguments
+        let curTime = new Date()
+        clearTimeout(timer)
+        if (curTime - startTime > mustRun) {
+            func.apply(context, args)
+            startTime = curTime
+        } else {
+            timer = setTimeout(func, wait)
+        }
+    }
+}
